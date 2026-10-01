@@ -17,7 +17,6 @@ try {
     "base-plates.jpg",
     "centring-props.jpg",
     "couplers.jpg",
-    "h-frames.jpg",
     "ms-plates.jpg",
     "scaffold-frames.jpg",
     "scaffold-tubes.jpg",
