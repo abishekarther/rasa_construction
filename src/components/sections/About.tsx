@@ -55,7 +55,7 @@ export default function About() {
                   </div>
                   <div className="absolute inset-0 z-10">
                     <Image
-                      src="/images/about-owner-site.jpg"
+                      src="/images/support-team-site.jpg"
                       alt="Rasa Construction Crew"
                       fill
                       className="object-cover"
