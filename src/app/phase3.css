@@ -1,0 +1,625 @@
+/* =============================================================
+   PHASE 3 — PREMIUM EXPERIENCE & FINAL POLISH
+   Footer / Contact / Micro-animations / Accessibility / Performance
+   ============================================================= */
+
+/* ──────────────────────────────────────────────────────────────
+   FOOTER — Premium dark redesign
+   ────────────────────────────────────────────────────────────── */
+footer,
+.footer {
+  padding-block: 80px 48px !important;
+}
+
+.footer-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,177,142,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,177,142,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-glow {
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(10,58,61,0.55) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer-tagline {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(212,177,142,0.55);
+  margin-top: 10px;
+}
+
+.footer-back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,177,142,0.18);
+  border-radius: 999px;
+  color: rgba(212,177,142,0.80);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 250ms ease, border-color 250ms ease, color 250ms ease;
+  flex-shrink: 0;
+}
+
+.footer-back-top:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(212,177,142,0.38);
+  color: #D4B18E;
+}
+
+.footer-back-top-label {
+  white-space: nowrap;
+}
+
+.footer-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,177,142,0.14) 30%, rgba(212,177,142,0.14) 70%, transparent 100%);
+  margin: 0;
+}
+
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 48px 40px;
+  padding-block: 48px;
+}
+
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.footer-brand-desc {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.42);
+  margin-top: 16px;
+  margin-bottom: 24px;
+  max-width: 280px;
+}
+
+.footer-social-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 250ms ease, border-color 250ms ease, color 250ms ease, transform 250ms ease;
+  flex-shrink: 0;
+}
+
+.footer-social-btn:hover {
+  background: rgba(212,177,142,0.14);
+  border-color: rgba(212,177,142,0.32);
+  color: #D4B18E;
+  transform: translateY(-2px);
+}
+
+.footer-col-heading {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 20px;
+}
+
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.50);
+  text-align: left;
+  transition: color 220ms ease;
+}
+
+.footer-link:hover {
+  color: rgba(255,255,255,0.90);
+}
+
+.footer-link-muted {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.40);
+}
+
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-contact-icon {
+  color: rgba(212,177,142,0.55);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.footer-contact-link {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.48);
+  text-decoration: none;
+  display: block;
+  transition: color 220ms ease;
+  line-height: 1.5;
+}
+
+.footer-contact-link:hover {
+  color: rgba(255,255,255,0.88);
+}
+
+.footer-email {
+  word-break: break-all;
+}
+
+.footer-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 28px;
+}
+
+.footer-copy {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.28);
+}
+
+.footer-designer-link {
+  color: rgba(255,255,255,0.45);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 220ms ease;
+}
+
+.footer-designer-link:hover {
+  color: rgba(255,255,255,0.80);
+}
+
+@media (max-width: 1024px) {
+  .footer-main-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  footer, .footer { padding-block: 56px 36px !important; }
+  .footer-main-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-top-row { flex-direction: column; align-items: flex-start; }
+  .footer-back-top { align-self: flex-start; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   CONTACT SECTION — Phase 3 polish
+   ────────────────────────────────────────────────────────────── */
+.contact-section {
+  background: linear-gradient(160deg, #F4EFE7 0%, #EDE5D9 100%) !important;
+}
+
+.contact-input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(10,58,61,0.14);
+  background: rgba(255,255,255,0.9);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  color: #162625;
+  outline: none;
+  transition: border-color 240ms ease, box-shadow 240ms ease, background 240ms ease;
+  box-sizing: border-box;
+}
+
+.contact-input:focus {
+  border-color: #0a3a3d;
+  box-shadow: 0 0 0 3px rgba(10,58,61,0.08);
+  background: #FFFFFF;
+}
+
+.contact-input:hover:not(:focus) {
+  border-color: rgba(10,58,61,0.24);
+}
+
+.contact-input::placeholder {
+  color: rgba(102,112,107,0.55);
+}
+
+/* Form card */
+.contact-form-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(10,58,61,0.10);
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(10,58,61,0.08);
+  padding: 36px;
+  transition: box-shadow 300ms ease;
+}
+
+.contact-form-card:hover {
+  box-shadow: 0 16px 52px rgba(10,58,61,0.11);
+}
+
+/* Contact details card */
+.contact-details-card {
+  background: linear-gradient(135deg, #0a3a3d 0%, #062426 100%);
+  border: 1px solid rgba(212,177,142,0.18);
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-top: 20px;
+  color: #FFFFFF;
+}
+
+.contact-details-card h3 {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(212,177,142,0.70);
+  margin-bottom: 10px;
+}
+
+.contact-details-card p {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.contact-detail-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.70);
+  text-decoration: none;
+  margin-top: 10px;
+  transition: color 220ms ease;
+}
+
+.contact-detail-link svg {
+  color: #D4B18E;
+  flex-shrink: 0;
+}
+
+.contact-detail-link:hover {
+  color: #D4B18E;
+}
+
+/* Success state */
+.contact-success-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  border-radius: 18px;
+  background: rgba(10,58,61,0.05);
+  border: 1px solid rgba(10,58,61,0.10);
+  gap: 12px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   HOVER MICRO-INTERACTIONS — Global polish layer
+   ────────────────────────────────────────────────────────────── */
+
+/* Links with underline animation */
+a.footer-link,
+a.footer-contact-link {
+  text-underline-offset: 3px;
+}
+
+/* Focus visible — keyboard nav accessibility */
+:focus-visible {
+  outline: 2px solid rgba(10,58,61,0.55) !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #0a3a3d !important;
+  outline-offset: 3px !important;
+}
+
+/* High-contrast focus for dark backgrounds */
+.navbar button:focus-visible,
+.navbar a:focus-visible,
+.footer button:focus-visible,
+.footer a:focus-visible,
+.stats-strip button:focus-visible {
+  outline-color: #D4B18E !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   CARD TILT EFFECT — subtle CSS 3D on hover
+   Framer Motion whileHover handles JS tilt on specific cards.
+   This CSS layer adds GPU-composited depth suggestions.
+   ────────────────────────────────────────────────────────────── */
+.service-showcase-card,
+.about-support-card,
+.stats-item-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SECTION CUE — animated arrow
+   ────────────────────────────────────────────────────────────── */
+.section-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--clr-primary);
+  text-decoration: none;
+  letter-spacing: -0.005em;
+  opacity: 0.70;
+  transition: opacity 220ms ease, gap 220ms ease;
+}
+
+.section-cue:hover {
+  opacity: 1;
+}
+
+.section-cue-arrow {
+  display: inline-block;
+  transition: transform 280ms cubic-bezier(0.22,1,0.36,1);
+}
+
+.section-cue:hover .section-cue-arrow {
+  transform: translateX(5px);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PERFORMANCE — will-change hints for animated elements
+   ────────────────────────────────────────────────────────────── */
+.service-showcase-card,
+.about-support-card,
+.bento-card,
+.stats-item-card,
+.nav-cta,
+.btn,
+.btn-primary,
+.btn-dark {
+  will-change: transform;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BACKGROUND RADIAL GLOWS — section atmosphere
+   ────────────────────────────────────────────────────────────── */
+.hero-section::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 120px;
+  background: radial-gradient(ellipse, rgba(10,58,61,0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services-section::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 40%;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(212,177,142,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.projects-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 250px;
+  background: radial-gradient(ellipse, rgba(10,58,61,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BUTTON — pill style final override for Phase 3 consistency
+   ────────────────────────────────────────────────────────────── */
+.btn,
+.btn-primary,
+.btn-dark,
+.btn-outline,
+.btn-ghost,
+.cta-button {
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+}
+
+/* Contact submit button */
+.contact-submit {
+  border-radius: 999px !important;
+  padding: 14px 28px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.005em !important;
+  transition:
+    transform 260ms cubic-bezier(0.22,1,0.36,1),
+    box-shadow 260ms cubic-bezier(0.22,1,0.36,1),
+    background 260ms ease !important;
+}
+
+.contact-submit:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 28px rgba(10,58,61,0.28) !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TYPOGRAPHY FINAL PASS — consistent scale everywhere
+   ────────────────────────────────────────────────────────────── */
+.section-title {
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.section-lead {
+  letter-spacing: -0.005em !important;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   IMAGE LOADING — fade-in for lazy loaded images
+   ────────────────────────────────────────────────────────────── */
+img {
+  transition: opacity 300ms ease;
+}
+
+img[data-loaded="false"] {
+  opacity: 0;
+}
+
+img[data-loaded="true"] {
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   RESPONSIVENESS — final overflow/alignment check
+   ────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .contact-form-card {
+    padding: 24px 20px !important;
+    border-radius: 18px !important;
+  }
+
+  .contact-details-card {
+    padding: 22px 20px !important;
+  }
+
+  .contact-section .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-cue {
+    margin-top: 28px;
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-input {
+    padding: 12px 14px;
+    font-size: 0.875rem;
+  }
+
+  .contact-form-card {
+    padding: 20px 16px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   REDUCED MOTION — full compliance
+   ────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .service-showcase-card,
+  .about-support-card,
+  .bento-card,
+  .stats-item-card,
+  .footer-social-btn,
+  .footer-back-top,
+  .contact-submit,
+  .btn,
+  .btn-primary,
+  .btn-dark,
+  .nav-cta {
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .service-showcase-img,
+  .project-bento-img {
+    transition: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SCROLL PROGRESS BAR — appears above everything
+   (actual element rendered in ScrollProgress.tsx)
+   ────────────────────────────────────────────────────────────── */

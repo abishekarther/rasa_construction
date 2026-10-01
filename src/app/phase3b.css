@@ -1,0 +1,120 @@
+/* =============================================================
+   PHASE 3 ADDENDUM — Final consistency + accessibility
+   ============================================================= */
+
+/* Floating button z-index stack */
+.wa-float {
+  z-index: 9999 !important;
+  bottom: 24px !important;
+  right: 24px !important;
+}
+
+/* Design system border radius consistency */
+.contact-form-card,
+.contact-details-card,
+.contact-owner-card,
+.contact-map-card {
+  border-radius: 20px !important;
+}
+
+/* Card consistent shadow depth */
+.service-showcase-card,
+.about-support-card,
+.stats-item-card {
+  box-shadow:
+    0 1px 2px rgba(10,58,61,0.04),
+    0 4px 8px rgba(10,58,61,0.04),
+    0 8px 24px rgba(10,58,61,0.06) !important;
+}
+
+/* Icon sizing consistency */
+.stats-icon-wrap svg,
+.about-support-icon-wrap svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Navbar CTA pill */
+.nav-cta {
+  border-radius: 999px !important;
+}
+
+/* Select element pointer */
+.contact-section select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+/* Skip to content — keyboard accessibility */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 12px 20px;
+  background: #0a3a3d;
+  color: #FFFFFF;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 99999;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  transition: top 200ms ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Heading colour consistency for dark section cards */
+.stats-item-card h3,
+.stats-item-card h4,
+.about-support-card h4 {
+  font-family: var(--font-heading), sans-serif;
+}
+
+/* Button active state micro-press */
+.btn:active,
+.btn-primary:active,
+.btn-dark:active,
+.nav-cta:active {
+  transform: translateY(0) scale(0.97) !important;
+  transition-duration: 100ms !important;
+}
+
+/* Link focus rings consistent on all backgrounds */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #0a3a3d;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+footer a:focus-visible,
+footer button:focus-visible,
+.stats-strip a:focus-visible,
+.stats-strip button:focus-visible {
+  outline-color: #D4B18E;
+}
+
+/* Image lazy-load fade */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"][src] {
+  opacity: 1;
+}
+
+/* Smooth scroll for anchor navigation */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* account for sticky navbar */
+}
+
+/* Performance: reduce paint for scroll progress */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

@@ -1,0 +1,206 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import Image from "next/image";
+import Reveal from "@/components/animations/Reveal";
+import Button from "@/components/ui/Button";
+import { equipment, type EquipmentItem } from "@/data/equipment";
+import { company } from "@/data/company";
+import { scrollTo } from "@/lib/utils";
+import { cardGridStagger, itemReveal } from "@/lib/animations";
+import SectionWatermark from "@/components/ui/SectionWatermark";
+import { useLanguage } from "@/context/LanguageContext";
+import { ui } from "@/i18n/ui";
+
+function getIcon(name: string): LucideIcon {
+  return (LucideIcons as unknown as Record<string, LucideIcon>)[name] ?? LucideIcons.Package;
+}
+
+export default function Equipment() {
+  const ref    = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { language } = useLanguage();
+  const t = ui[language];
+
+  return (
+    <section
+      id="equipment"
+      ref={ref}
+      className="equipment-section section relative overflow-hidden"
+      style={{ background: "#F4EFE7" }}
+    >
+      {/* Huge background watermark */}
+      <SectionWatermark text="EQUIPMENT" align="right" variant="light" top="30%" opacity={0.02} />
+      {/* Faint diagonal texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(135deg, rgba(8,51,53,0.018) 0px, rgba(8,51,53,0.018) 1px, transparent 1px, transparent 60px)",
+        }}
+      />
+
+      <div className="container">
+        {/* ── Header ── */}
+        <Reveal>
+          <div
+            style={{ gap: "var(--s8)", alignItems: "end" }}
+            className="section-header grid grid-cols-1 lg:grid-cols-2 equipment-header-grid"
+          >
+            <div>
+              <p className="section-eyebrow">{t.equipment.eyebrow}</p>
+              <h2 className="section-title">
+                {t.equipment.titleLine1}<br />
+                <em className="t-italic-dark">{t.equipment.titleLine2}</em>
+              </h2>
+            </div>
+            <div>
+              <p className="section-lead">
+                {t.equipment.lead}
+              </p>
+              <div
+                className="t-label"
+                style={{ color: "var(--clr-primary)", marginTop: "var(--s4)", fontWeight: 700 }}
+              >
+                {t.equipment.callToCheck}&nbsp;
+                <a href={`tel:${company.contact.primary.replace(/\s/g, "")}`} style={{ color: "inherit", textDecoration: "underline" }}>
+                  {company.contact.primary}
+                </a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* ── Equipment grid — bento layout ── */}
+        <motion.div
+          className="bento-grid"
+          variants={cardGridStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          {equipment.map((item) => {
+            const { id, name, description, variants, iconName, image, ta } = item;
+            const Icon = getIcon(iconName);
+            const isFeatured = id === "scaffold-tubes";
+            const displayName = language === "ta" && ta ? ta.name : name;
+            const displayDesc = language === "ta" && ta ? ta.description : description;
+            const displayVariants = language === "ta" && ta ? ta.variants : variants;
+            return (
+              <motion.div
+                key={id}
+                variants={itemReveal}
+                className={`group bento-card equipment-card ${isFeatured ? "bento-card-wide md:col-span-8" : "bento-card-md md:col-span-4"} col-span-12`}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: "0 20px 60px rgba(8,51,53,0.18), 0 0 0 1px rgba(216,185,163,0.18)",
+                  transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+                }}
+              >
+                {/* Image block at the top */}
+                {image && (
+                  <div className="bento-media equip-img-wrap relative w-full aspect-[16/10] overflow-hidden rounded-[12px]" style={{ flexShrink: 0 }}>
+                    <motion.div
+                      className="absolute inset-0"
+                      whileHover={{ scale: 1.04 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ originX: 0.5, originY: 0.5 }}
+                    >
+                      <Image
+                        src={image}
+                        alt={name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </motion.div>
+                  </div>
+                )}
+
+                {/* Content underneath */}
+                <div className="equip-card-content" style={{ display: "flex", flexDirection: "column", gap: "var(--s3)", flexGrow: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "var(--s2)", flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <div
+                        style={{
+                          width: "28px", height: "28px",
+                          borderRadius: "50%",
+                          background: "rgba(8,51,53,0.06)",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Icon size={12} style={{ color: "var(--clr-primary)" }} />
+                      </div>
+                      <h3
+                        className="font-p font-extrabold"
+                        style={{ fontSize: "1.1rem", color: "var(--clr-primary)", lineHeight: 1.2 }}
+                      >
+                        {displayName}
+                      </h3>
+                    </div>
+                    {displayVariants && (
+                      <span className="text-[10px] font-bold text-[var(--clr-primary)] uppercase tracking-wider bg-[var(--clr-accent)] px-2 py-0.5 rounded-full ml-auto">
+                        {displayVariants}
+                      </span>
+                    )}
+                  </div>
+                  <p
+                    className="leading-relaxed"
+                    style={{ fontSize: "0.85rem", color: "var(--clr-text-md)", marginTop: "4px" }}
+                  >
+                    {displayDesc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* ── Note strip ── */}
+        <Reveal delay={0.15}>
+          <div className="package-strip">
+            <div>
+              <div
+                className="font-m text-white"
+                style={{ fontWeight: 800, fontSize: "var(--t-body)", marginBottom: "var(--s1)" }}
+              >
+                {t.equipment.needPackage}
+              </div>
+              <p
+                className="t-sm"
+                style={{ color: "rgba(255,255,255,0.58)", lineHeight: 1.6 }}
+              >
+                {t.equipment.packageDesc}
+              </p>
+            </div>
+            <Button
+              href="#contact"
+              variant="primary"
+              onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
+              style={{ fontWeight: 700 }}
+            >
+              {t.equipment.getPackageQuote}
+            </Button>
+          </div>
+        </Reveal>
+
+        {/* ── Narrative cue ── */}
+        <Reveal delay={0.2}>
+          <a href="#about" className="section-cue" onClick={(e) => { e.preventDefault(); const el = document.getElementById("about"); el?.scrollIntoView({ behavior: "smooth" }); }}>
+            {t.equipment.cue}
+            <span className="section-cue-arrow" aria-hidden="true">→</span>
+          </a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
