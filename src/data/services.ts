@@ -63,7 +63,7 @@ export const services: Service[] = [
     usedFor:     "Bridge construction, high-ceiling commercial lobbies, heavy slab staging",
     tag:         "Shoring Systems",
     iconName:    "Columns",
-    image:       "/equipment/h-frames.jpg",
+    image:       "/equipment/h-frames.png",
     alt:         "Modular H-frame steel structure setup",
     ta: {
       title:       "எச்-ஃபிரேம்கள்",
@@ -99,7 +99,7 @@ export const services: Service[] = [
     usedFor:     "Foundations, columns, roof slabs, and retaining walls",
     tag:         "Concrete Works",
     iconName:    "Building",
-    image:       "/services/concrete-works.jpg",
+    image:       "/services/concrete-work-01.jpg",
     alt:         "Concrete work execution at building construction site",
     ta: {
       title:       "கான்கிரீட் / சென்டரிங் ஆதரவு",
